@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3596a9e3f194772a95dffe2ddd8ca0b977132e1432042bd0bdb443a176a1a651
+-- hash: 08ac9c58cbc712adee44287cf5d6705b49cab53fd858ceeaa43ddf71b1926bca
 
 name:           aeson-via
 version:        0.1.0
@@ -26,44 +26,16 @@ source-repository head
 
 library
   exposed-modules:
-      Aesonvia.Main
+      AesonVia
   other-modules:
       Paths_aeson_via
   hs-source-dirs:
       src
-  default-extensions: ConstraintKinds DataKinds DeriveFunctor DeriveFoldable DeriveGeneric DeriveTraversable FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NoImplicitPrelude OverloadedStrings Rank2Types TemplateHaskell TupleSections TypeApplications TypeFamilies
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-unused-top-binds
   build-depends:
-      base >=4.12 && <5
-  default-language: Haskell2010
-
-executable aeson-via-exe
-  main-is: Main.hs
-  other-modules:
-      Paths_aeson_via
-  hs-source-dirs:
-      app
-  default-extensions: ConstraintKinds DataKinds DeriveFunctor DeriveFoldable DeriveGeneric DeriveTraversable FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NoImplicitPrelude OverloadedStrings Rank2Types TemplateHaskell TupleSections TypeApplications TypeFamilies
-  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-unused-top-binds -threaded -rtsopts -with-rtsopts=-N
-  build-depends:
-      aeson-via
+      aeson >=1.4
+    , aeson-casing >=0.2
     , base >=4.12 && <5
-  default-language: Haskell2010
-
-test-suite aeson-via-test
-  type: exitcode-stdio-1.0
-  main-is: Tasty.hs
-  other-modules:
-      Test.Aesonvia.SimpleTest
-      Paths_aeson_via
-  hs-source-dirs:
-      test
-  default-extensions: ConstraintKinds DataKinds DeriveFunctor DeriveFoldable DeriveGeneric DeriveTraversable FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NoImplicitPrelude OverloadedStrings Rank2Types TemplateHaskell TupleSections TypeApplications TypeFamilies
-  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-unused-top-binds -threaded -rtsopts -with-rtsopts=-N
-  build-depends:
-      aeson-via
-    , base >=4.12 && <5
-    , tasty
-    , tasty-discover
-    , tasty-hunit
+    , newtype-generics >=0.5
+    , text >=1.2
   default-language: Haskell2010

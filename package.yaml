@@ -5,6 +5,8 @@ license:             BSD3
 author:              "Eric Conlon"
 maintainer:          "ejconlon@gmail.com"
 copyright:           "(c) 2020 Eric Conlon"
+category:            Data
+synopsis:            Wrappers to derive-via Aeson ToJSON/FromJSON typeclasses with typeclass-directed configuration
 
 extra-source-files:
 - README.md
@@ -13,30 +15,10 @@ description: Please see the README on GitHub at <https://github.com/ejconlon/aes
 
 dependencies:
 - base >= 4.12 && < 5
-
-default-extensions:
-  - ConstraintKinds
-  - DataKinds
-  - DeriveFunctor
-  - DeriveFoldable
-  - DeriveGeneric
-  - DeriveTraversable
-  - FlexibleContexts
-  - FlexibleInstances
-  - FunctionalDependencies
-  - GADTs
-  - GeneralizedNewtypeDeriving
-  - KindSignatures
-  - LambdaCase
-  - MultiParamTypeClasses
-  - MultiWayIf
-  - NoImplicitPrelude
-  - OverloadedStrings
-  - Rank2Types
-  - TemplateHaskell
-  - TupleSections
-  - TypeApplications
-  - TypeFamilies
+- aeson >= 1.4
+- aeson-casing >= 0.2
+- newtype-generics >= 0.5
+- text >= 1.2
 
 ghc-options:
 - -Wall
@@ -50,28 +32,3 @@ ghc-options:
 
 library:
   source-dirs: src
-
-executables:
-  aeson-via-exe:
-    main:                Main.hs
-    source-dirs:         app
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    dependencies:
-    - aeson-via
-
-tests:
-  aeson-via-test:
-    main:                Tasty.hs
-    source-dirs:         test
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    dependencies:
-    - aeson-via
-    - tasty
-    - tasty-discover
-    - tasty-hunit
