@@ -6,7 +6,7 @@ author:              "Eric Conlon"
 maintainer:          "ejconlon@gmail.com"
 copyright:           "(c) 2020 Eric Conlon"
 category:            Data
-synopsis:            Wrappers to derive-via Aeson ToJSON/FromJSON typeclasses with typeclass-directed configuration
+synopsis:            Wrappers to derive-via Aeson ToJSON/FromJSON typeclasses
 
 extra-source-files:
 - README.md

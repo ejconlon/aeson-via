@@ -4,11 +4,13 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 08ac9c58cbc712adee44287cf5d6705b49cab53fd858ceeaa43ddf71b1926bca
+-- hash: 60d4229649edb0ef7f1268f79df05c7fa9d34be348ef1a2d860902ccdc143242
 
 name:           aeson-via
 version:        0.1.0
+synopsis:       Wrappers to derive-via Aeson ToJSON/FromJSON typeclasses
 description:    Please see the README on GitHub at <https://github.com/ejconlon/aeson-via#readme>
+category:       Data
 homepage:       https://github.com/ejconlon/aeson-via#readme
 bug-reports:    https://github.com/ejconlon/aeson-via/issues
 author:         Eric Conlon
