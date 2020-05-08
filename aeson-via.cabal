@@ -1,0 +1,69 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 3596a9e3f194772a95dffe2ddd8ca0b977132e1432042bd0bdb443a176a1a651
+
+name:           aeson-via
+version:        0.1.0
+description:    Please see the README on GitHub at <https://github.com/ejconlon/aeson-via#readme>
+homepage:       https://github.com/ejconlon/aeson-via#readme
+bug-reports:    https://github.com/ejconlon/aeson-via/issues
+author:         Eric Conlon
+maintainer:     ejconlon@gmail.com
+copyright:      (c) 2020 Eric Conlon
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/ejconlon/aeson-via
+
+library
+  exposed-modules:
+      Aesonvia.Main
+  other-modules:
+      Paths_aeson_via
+  hs-source-dirs:
+      src
+  default-extensions: ConstraintKinds DataKinds DeriveFunctor DeriveFoldable DeriveGeneric DeriveTraversable FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NoImplicitPrelude OverloadedStrings Rank2Types TemplateHaskell TupleSections TypeApplications TypeFamilies
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-unused-top-binds
+  build-depends:
+      base >=4.12 && <5
+  default-language: Haskell2010
+
+executable aeson-via-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_aeson_via
+  hs-source-dirs:
+      app
+  default-extensions: ConstraintKinds DataKinds DeriveFunctor DeriveFoldable DeriveGeneric DeriveTraversable FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NoImplicitPrelude OverloadedStrings Rank2Types TemplateHaskell TupleSections TypeApplications TypeFamilies
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-unused-top-binds -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson-via
+    , base >=4.12 && <5
+  default-language: Haskell2010
+
+test-suite aeson-via-test
+  type: exitcode-stdio-1.0
+  main-is: Tasty.hs
+  other-modules:
+      Test.Aesonvia.SimpleTest
+      Paths_aeson_via
+  hs-source-dirs:
+      test
+  default-extensions: ConstraintKinds DataKinds DeriveFunctor DeriveFoldable DeriveGeneric DeriveTraversable FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving KindSignatures LambdaCase MultiParamTypeClasses MultiWayIf NoImplicitPrelude OverloadedStrings Rank2Types TemplateHaskell TupleSections TypeApplications TypeFamilies
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-unused-top-binds -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson-via
+    , base >=4.12 && <5
+    , tasty
+    , tasty-discover
+    , tasty-hunit
+  default-language: Haskell2010
