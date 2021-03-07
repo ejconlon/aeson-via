@@ -3,6 +3,7 @@
 {-# LANGUAGE UndecidableInstances #-}
 
 -- | Wrappers to control generic 'ToJSON' and 'FromJSON' derivation with deriving-via.
+--   See the test for example definitions and their encoding.
 module AesonVia
   ( AesonRecord (..)
   , AesonNewtype (..)
@@ -41,14 +42,19 @@ newtypeOptions = defaultOptions
 
 -- Has classes
 
+-- | Mostly an internal class directing constructor/field conversion.
 class HasJSONOptions a where
   getJSONOptions :: Proxy a -> Options
 
+-- | Used with 'AesonTag' to define a prefix to be removed from a 'Bounded' 'Enum'.
+-- For example, `data Foo = FooBar | FooBaz` would use the prefix `Foo` to yield converted string
+-- values `bar` and `baz`.
 class HasTagPrefix a where
   getTagPrefix :: Proxy a -> Text
 
 -- Wrappers
 
+-- | Generic deriving ToJSON/FromJSON via this uses 'HasTagPrefix' to turn 'Bounded' 'Enum' datatypes into enumerated strings.
 newtype AesonTag a = AesonTag { unAesonTag :: a }
 
 instance HasTagPrefix a => HasJSONOptions (AesonTag a) where
@@ -61,6 +67,7 @@ instance (HasJSONOptions (AesonTag a), Generic a, GToJSON Zero (Rep a), GToEncod
 instance (HasJSONOptions (AesonTag a), Generic a, GFromJSON Zero (Rep a)) => FromJSON (AesonTag a) where
   parseJSON = (AesonTag <$>) . genericParseJSON (getJSONOptions (Proxy :: Proxy (AesonTag a)))
 
+-- | Generic deriving ToJSON/FromJSON via this removes the common field name prefix in the encoding.
 newtype AesonRecord a = AesonRecord { unAesonRecord :: a }
 
 instance HasJSONOptions (AesonRecord a) where
@@ -73,6 +80,7 @@ instance (HasJSONOptions (AesonRecord a), Generic a, GToJSON Zero (Rep a), GToEn
 instance (HasJSONOptions (AesonRecord a), Generic a, GFromJSON Zero (Rep a)) => FromJSON (AesonRecord a) where
   parseJSON = (AesonRecord <$>) . genericParseJSON (getJSONOptions (Proxy :: Proxy (AesonRecord a)))
 
+-- | Generic deriving ToJSON/FromJSON via this yields an encoding equivalent to the wrapped type.
 newtype AesonNewtype n o = AesonNewtype { unAesonNewtype :: n }
 
 instance HasJSONOptions (AesonNewtype n o) where
