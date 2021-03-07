@@ -1,0 +1,7 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "aeson-via:lib"
+
+    - path: "./test"
+      component: "aeson-via:test:aeson-via-test"

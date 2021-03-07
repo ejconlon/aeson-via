@@ -2,6 +2,7 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE UndecidableInstances #-}
 
+-- | Wrappers to control generic 'ToJSON' and 'FromJSON' derivation with deriving-via.
 module AesonVia
   ( AesonRecord (..)
   , AesonNewtype (..)
@@ -11,7 +12,8 @@ module AesonVia
   ) where
 
 import Control.Newtype.Generics (Newtype, O, pack, unpack)
-import Data.Aeson
+import Data.Aeson (FromJSON (..), GFromJSON, GToEncoding, GToJSON, Options (..), ToJSON (..), Zero, defaultOptions,
+                   genericParseJSON, genericToEncoding, genericToJSON)
 import Data.Aeson.Casing (aesonPrefix, snakeCase)
 import Data.Proxy (Proxy (..))
 import Data.Text (Text)

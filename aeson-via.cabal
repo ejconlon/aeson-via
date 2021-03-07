@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 60d4229649edb0ef7f1268f79df05c7fa9d34be348ef1a2d860902ccdc143242
+-- hash: 318cc7b2c6d83b710b0f777d76624040eeabdc8b6851a92937edba2804dcffde
 
 name:           aeson-via
-version:        0.1.0
+version:        0.1.1
 synopsis:       Wrappers to derive-via Aeson ToJSON/FromJSON typeclasses
 description:    Please see the README on GitHub at <https://github.com/ejconlon/aeson-via#readme>
 category:       Data
@@ -35,9 +35,28 @@ library
       src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-unused-top-binds
   build-depends:
-      aeson >=1.4
-    , aeson-casing >=0.2
+      aeson >=1.5 && <1.6
+    , aeson-casing >=0.2 && <0.3
     , base >=4.12 && <5
-    , newtype-generics >=0.5
-    , text >=1.2
+    , newtype-generics >=0.5 && <0.6
+    , text >=1.2 && <1.3
+  default-language: Haskell2010
+
+test-suite aeson-via-test
+  type: exitcode-stdio-1.0
+  main-is: Main.hs
+  other-modules:
+      Paths_aeson_via
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-unused-top-binds -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson >=1.5 && <1.6
+    , aeson-casing >=0.2 && <0.3
+    , aeson-via
+    , base >=4.12 && <5
+    , newtype-generics >=0.5 && <0.6
+    , tasty >=1.2 && <1.3
+    , tasty-hunit >=0.10 && <0.11
+    , text >=1.2 && <1.3
   default-language: Haskell2010
