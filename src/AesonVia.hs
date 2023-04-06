@@ -11,11 +11,23 @@ module AesonVia
   , AesonTag (..)
   , HasJSONOptions (..)
   , HasTagPrefix (..)
-  ) where
+  )
+where
 
 import Control.Newtype.Generics (Newtype, O, pack, unpack)
-import Data.Aeson (FromJSON (..), GFromJSON, GToEncoding, GToJSON, Options (..), ToJSON (..), Zero, defaultOptions,
-                   genericParseJSON, genericToEncoding, genericToJSON)
+import Data.Aeson
+  ( FromJSON (..)
+  , GFromJSON
+  , GToEncoding
+  , GToJSON
+  , Options (..)
+  , ToJSON (..)
+  , Zero
+  , defaultOptions
+  , genericParseJSON
+  , genericToEncoding
+  , genericToJSON
+  )
 import Data.Aeson.Casing (aesonPrefix, snakeCase)
 import Data.Proxy (Proxy (..))
 import Data.Text (Text)
@@ -26,20 +38,21 @@ import Prelude
 -- Options
 
 recordOptions :: Options
-recordOptions = (aesonPrefix snakeCase) { omitNothingFields = True }
+recordOptions = (aesonPrefix snakeCase) {omitNothingFields = True}
 
 tagOptions :: Text -> Options
 tagOptions prefix =
   let prefixLen = Text.length prefix
-  in defaultOptions
-      { allNullaryToStringTag = True
-      , constructorTagModifier = snakeCase . drop prefixLen
-      }
+  in  defaultOptions
+        { allNullaryToStringTag = True
+        , constructorTagModifier = snakeCase . drop prefixLen
+        }
 
 newtypeOptions :: Options
-newtypeOptions = defaultOptions
-  { unwrapUnaryRecords = True
-  }
+newtypeOptions =
+  defaultOptions
+    { unwrapUnaryRecords = True
+    }
 
 -- Has classes
 
@@ -56,7 +69,7 @@ class HasTagPrefix a where
 -- Wrappers
 
 -- | Generic deriving ToJSON/FromJSON via this uses 'HasTagPrefix' to turn 'Bounded' 'Enum' datatypes into enumerated strings.
-newtype AesonTag a = AesonTag { unAesonTag :: a }
+newtype AesonTag a = AesonTag {unAesonTag :: a}
 
 instance HasTagPrefix a => HasJSONOptions (AesonTag a) where
   getJSONOptions _ = tagOptions (getTagPrefix (Proxy :: Proxy a))
@@ -69,7 +82,7 @@ instance (HasJSONOptions (AesonTag a), Generic a, GFromJSON Zero (Rep a)) => Fro
   parseJSON = (AesonTag <$>) . genericParseJSON (getJSONOptions (Proxy :: Proxy (AesonTag a)))
 
 -- | Generic deriving ToJSON/FromJSON via this removes the common field name prefix in the encoding.
-newtype AesonRecord a = AesonRecord { unAesonRecord :: a }
+newtype AesonRecord a = AesonRecord {unAesonRecord :: a}
 
 instance HasJSONOptions (AesonRecord a) where
   getJSONOptions _ = recordOptions
@@ -82,7 +95,7 @@ instance (HasJSONOptions (AesonRecord a), Generic a, GFromJSON Zero (Rep a)) => 
   parseJSON = (AesonRecord <$>) . genericParseJSON (getJSONOptions (Proxy :: Proxy (AesonRecord a)))
 
 -- | Generic deriving ToJSON/FromJSON via this yields an encoding equivalent to the wrapped type.
-newtype AesonNewtype n o = AesonNewtype { unAesonNewtype :: n }
+newtype AesonNewtype n o = AesonNewtype {unAesonNewtype :: n}
 
 instance HasJSONOptions (AesonNewtype n o) where
   getJSONOptions _ = newtypeOptions

@@ -4,7 +4,8 @@
 
 module Main
   ( main
-  ) where
+  )
+where
 
 import AesonVia (AesonNewtype (..), AesonRecord (..), AesonTag (..), HasTagPrefix (..))
 import Control.Newtype.Generics (Newtype)
@@ -16,13 +17,14 @@ import Test.Tasty.HUnit (testCase, (@?=))
 
 newtype Author = Author
   { _authorWrapped :: String
-  } deriving (Eq, Show, Generic)
-    deriving (ToJSON, FromJSON) via (AesonNewtype Author String)
+  }
+  deriving (Eq, Show, Generic)
+  deriving (ToJSON, FromJSON) via (AesonNewtype Author String)
 
 instance Newtype Author
 
-data Category =
-    CategoryNews
+data Category
+  = CategoryNews
   | CategoryOpinion
   | CategoryLies
   deriving (Eq, Show, Generic)
@@ -35,8 +37,9 @@ data Article = Article
   { _articleTitle :: String
   , _articleAuthor :: Author
   , _articleCategory :: Category
-  } deriving (Eq, Show, Generic)
-    deriving (ToJSON, FromJSON) via (AesonRecord Article)
+  }
+  deriving (Eq, Show, Generic)
+  deriving (ToJSON, FromJSON) via (AesonRecord Article)
 
 testSomething :: TestTree
 testSomething = testCase "something" $ do
@@ -46,6 +49,9 @@ testSomething = testCase "something" $ do
   actual @?= expected
 
 main :: IO ()
-main = defaultMain $ testGroup "AesonVia"
-  [ testSomething
-  ]
+main =
+  defaultMain $
+    testGroup
+      "AesonVia"
+      [ testSomething
+      ]
