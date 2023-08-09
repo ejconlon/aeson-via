@@ -1,10 +1,8 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.35.0.
+-- This file has been generated from package.yaml by hpack version 0.35.2.
 --
 -- see: https://github.com/sol/hpack
---
--- hash: d810620276cd1066523e2e1543d06ac95aafc53f99394226b2768f5a025d3346
 
 name:           aeson-via
 version:        0.2.1
@@ -39,7 +37,7 @@ library
     , aeson-casing ==0.2.*
     , base >=4.12 && <5
     , newtype-generics >=0.5 && <0.7
-    , text >=1.2 && <2.0
+    , text >=1.2 && <2.1
   default-language: Haskell2010
 
 test-suite aeson-via-test
@@ -58,5 +56,5 @@ test-suite aeson-via-test
     , newtype-generics >=0.5 && <0.7
     , tasty >=1.2 && <1.5
     , tasty-hunit ==0.10.*
-    , text >=1.2 && <2.0
+    , text >=1.2 && <2.1
   default-language: Haskell2010
