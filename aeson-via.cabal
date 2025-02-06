@@ -1,11 +1,11 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.35.2.
+-- This file has been generated from package.yaml by hpack version 0.37.0.
 --
 -- see: https://github.com/sol/hpack
 
 name:           aeson-via
-version:        0.2.2
+version:        0.2.3
 synopsis:       Wrappers to derive-via Aeson ToJSON/FromJSON typeclasses
 description:    Please see the README on GitHub at <https://github.com/ejconlon/aeson-via#readme>
 category:       Data
@@ -33,11 +33,11 @@ library
       src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-unused-top-binds
   build-depends:
-      aeson >=2.0 && <2.2
+      aeson >=2.0 && <2.3
     , aeson-casing ==0.2.*
     , base >=4.12 && <5
     , newtype-generics >=0.5 && <0.7
-    , text >=1.2 && <2.1
+    , text >=1.2 && <2.2
   default-language: Haskell2010
 
 test-suite aeson-via-test
@@ -49,12 +49,12 @@ test-suite aeson-via-test
       test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wpartial-fields -Wredundant-constraints -fno-warn-unused-top-binds -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      aeson >=2.0 && <2.2
+      aeson >=2.0 && <2.3
     , aeson-casing ==0.2.*
     , aeson-via
     , base >=4.12 && <5
     , newtype-generics >=0.5 && <0.7
-    , tasty >=1.2 && <1.5
+    , tasty >=1.2 && <1.6
     , tasty-hunit ==0.10.*
-    , text >=1.2 && <2.1
+    , text >=1.2 && <2.2
   default-language: Haskell2010

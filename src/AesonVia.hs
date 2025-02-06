@@ -72,7 +72,7 @@ class HasTagPrefix a where
 -- | Generic deriving ToJSON/FromJSON via this uses 'HasTagPrefix' to turn 'Bounded' 'Enum' datatypes into enumerated strings.
 newtype AesonTag a = AesonTag {unAesonTag :: a}
 
-instance HasTagPrefix a => HasJSONOptions (AesonTag a) where
+instance (HasTagPrefix a) => HasJSONOptions (AesonTag a) where
   getJSONOptions _ = tagOptions (getTagPrefix (Proxy :: Proxy a))
 
 instance (HasJSONOptions (AesonTag a), Generic a, GToJSON Zero (Rep a), GToEncoding Zero (Rep a)) => ToJSON (AesonTag a) where

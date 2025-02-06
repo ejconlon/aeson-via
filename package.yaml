@@ -1,5 +1,5 @@
 name:                aeson-via
-version:             0.2.2
+version:             0.2.3
 github:              "ejconlon/aeson-via"
 license:             BSD3
 author:              "Eric Conlon"
@@ -15,10 +15,10 @@ description: Please see the README on GitHub at <https://github.com/ejconlon/aes
 
 dependencies:
 - base >= 4.12 && < 5
-- aeson >= 2.0 && < 2.2
+- aeson >= 2.0 && < 2.3
 - aeson-casing >= 0.2 && < 0.3
 - newtype-generics >= 0.5 && < 0.7
-- text >= 1.2 && < 2.1
+- text >= 1.2 && < 2.2
 
 ghc-options:
 - -Wall
@@ -43,5 +43,5 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - aeson-via
-    - tasty >= 1.2 && < 1.5
+    - tasty >= 1.2 && < 1.6
     - tasty-hunit >= 0.10 && < 0.11
